@@ -39,7 +39,21 @@ module MysqlS3Backup
     end
     
     def delete_all(prefix)
-      AWS::S3::Bucket.objects(@name, :prefix => prefix).each { |obj| obj.delete }
+      # Wrap the objects' deletion in a loop to ensure we really do delete them all.
+      #
+      # This should not be necessary but, for reasons I haven't yet fathomed, the
+      # `obj.delete` seems to increment some internal iteration pointer by two instead
+      # of one.  So instead of deleting each object in turn, it deletes the first, the
+      # third, the fifth, etc.
+      #
+      # The `each` iterator behaves correctly; this does what you'd expect:
+      #
+      #     AWS::S3::Bucket.objects(@name, :prefix => prefix).each { |obj| puts obj.key }
+      #
+      # It's only when `delete` gets involved that things go pear shaped.
+      while (size = AWS::S3::Bucket.objects(@name, :prefix => prefix).size) > 0
+        AWS::S3::Bucket.objects(@name, :prefix => prefix).each { |obj| obj.delete }
+      end
     end
   end
 end
