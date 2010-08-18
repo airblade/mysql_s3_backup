@@ -9,6 +9,7 @@ module MysqlS3Backup
       @mysql_config = config[:mysql].symbolize_keys
       @s3_config = config[:s3].symbolize_keys
       @bucket = @s3_config.delete(:bucket)
+      @timeout = @s3_config.delete(:timeout)
     end
     
     def mysql
@@ -20,7 +21,7 @@ module MysqlS3Backup
     end
     
     def backup
-      MysqlS3Backup::Backup.new(mysql, bucket)
+      MysqlS3Backup::Backup.new(mysql, bucket, @timeout)
     end
     
     def self.from_yaml_file(file)

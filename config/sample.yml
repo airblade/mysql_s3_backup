@@ -15,4 +15,5 @@ s3:
   # S3 credentials
   access_key_id: XXXXXXXXXXXXXXX
   secret_access_key: XXXXXXXXXXXXXXXXXXXXXX
-  
+  timeout: 30
+

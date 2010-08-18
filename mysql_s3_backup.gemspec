@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name            = "airblade-mysql_s3_backup"
-  s.version         = "0.0.2"
+  s.version         = "0.0.3"
  
   s.authors         = ["Marc-Andre Cournoyer", "Andrew Stewart"]
   s.email           = "boss@airbladesoftware.com"
@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
   
   s.add_dependency  "aws-s3"
   s.add_dependency  "lockfile"
+  s.add_dependency  "terminator"
 end
