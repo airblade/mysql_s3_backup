@@ -6,7 +6,7 @@ module MysqlS3Backup
   class Backup
     attr_reader :mysql, :bucket, :timeout
 
-    def initialize(mysql, bucket, timeout=30)
+    def initialize(mysql, bucket, timeout)
       @mysql = mysql
       @bucket = bucket
       @timeout = timeout
@@ -66,11 +66,15 @@ module MysqlS3Backup
     private
 
       def timeout
-        result = nil
-        Terminator.terminate @timeout do
-          result = yield
+        if @timeout
+          result = nil
+          Terminator.terminate @timeout do
+            result = yield
+          end
+          result
+        else
+          yield
         end
-        result
       end
 
       def lock

@@ -35,6 +35,8 @@ Create a YAML config file:
       # S3 credentials
       access_key_id: XXXXXXXXXXXXXXX
       secret_access_key: XXXXXXXXXXXXXXXXXXXXXX
+      # Optional timeout in seconds
+      timeout: 30
 
 Create a full backup:
 

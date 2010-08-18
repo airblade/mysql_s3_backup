@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name            = "airblade-mysql_s3_backup"
-  s.version         = "0.0.3"
+  s.version         = "0.0.4"
  
   s.authors         = ["Marc-Andre Cournoyer", "Andrew Stewart"]
   s.email           = "boss@airbladesoftware.com"
