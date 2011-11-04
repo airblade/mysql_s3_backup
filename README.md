@@ -1,3 +1,5 @@
+[DEPRECATED - use https://github.com/airblade/mys3ql instead.]
+
 # Send your Mysql backups to S3
 A simple backup script for Mysql and S3 with incremental backups.
 
